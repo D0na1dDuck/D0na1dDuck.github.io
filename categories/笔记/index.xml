@@ -1,0 +1,15 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
+    <channel>
+        <title>笔记 | 分类 | Leong&#39;s Blog</title>
+        <link>https://esp8266.xyz/categories/%E7%AC%94%E8%AE%B0/</link>
+        <description>笔记 | 分类 | Leong&#39;s Blog</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>d0na1dduck6914@gmail.com (Leong)</managingEditor>
+            <webMaster>d0na1dduck6914@gmail.com (Leong)</webMaster><copyright>This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.</copyright><lastBuildDate>Wed, 29 Apr 2020 16:12:35 &#43;0800</lastBuildDate><atom:link href="https://esp8266.xyz/categories/%E7%AC%94%E8%AE%B0/" rel="self" type="application/rss+xml" /><item>
+                <title>IDEA快捷键总结</title>
+                <link>https://esp8266.xyz/idea%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/</link>
+                <pubDate>Wed, 29 Apr 2020 16:12:35 &#43;0800</pubDate>
+                <author>Leong</author>
+                <guid>https://esp8266.xyz/idea%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/</guid>
+                <description>1. 编辑类快捷键 快捷键 操作 psvm &#43; Tab 生成main方法 sout &#43; tab 生成输出语句 Ctrl&#43;X / Ctrl &#43; Y 删除一行 Ctrl&#43;D 复制一行 Ctrl&#43;/ 或 Ctrl&#43;Shift&#43;/ 注释代码 Ctrl &#43; Z 撤销 Ctrl &#43; Shift &#43; Z 取消撤销 Ctrl &#43; C</description>
+            </item></channel>
+</rss>
