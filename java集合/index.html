@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>Java集合 | Leong&#39;s Blog</title>
+        <meta name="Description" content="Leong&#39;s Blog"><meta property="og:title" content="Java集合" />
+<meta property="og:description" content="1. 从Java中的数组谈起 1.1 使用数组 数组：是用于储存多个相同类型数据的集合。 定义一个数组类型的变量，使用数组类型“类型[]”，例如，int[]" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://esp8266.xyz/java%E9%9B%86%E5%90%88/" />
+<meta property="article:published_time" content="2020-04-29T16:12:49+08:00" />
+<meta property="article:modified_time" content="2020-04-29T16:12:49+08:00" />
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Java集合"/>
+<meta name="twitter:description" content="1. 从Java中的数组谈起 1.1 使用数组 数组：是用于储存多个相同类型数据的集合。 定义一个数组类型的变量，使用数组类型“类型[]”，例如，int[]"/>
+<meta name="application-name" content="Leong&#39;s-Blog">
+<meta name="apple-mobile-web-app-title" content="Leong&#39;s-Blog"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="canonical" href="https://esp8266.xyz/java%E9%9B%86%E5%90%88/" /><link rel="prev" href="https://esp8266.xyz/idea%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/" /><link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet"><link rel="stylesheet" href="/css/style.en.min.css"><link href="https://cdn.bootcdn.net/ajax/libs/font-awesome/5.13.0/css/all.css" rel="stylesheet"><link href="https://cdn.bootcdn.net/ajax/libs/animate.css/3.7.2/animate.css" rel="stylesheet"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "Java集合",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/esp8266.xyz\/java%E9%9B%86%E5%90%88\/"
+        },"image": {
+                "@type": "ImageObject",
+                "url": "https:\/\/esp8266.xyz\/cover.png",
+                "width":  800 ,
+                "height":  600 
+            },"genre": "posts","keywords": "Java, 集合, 数组","wordcount":  2653 ,
+        "url": "https:\/\/esp8266.xyz\/java%E9%9B%86%E5%90%88\/","datePublished": "2020-04-29T16:12:49+08:00","dateModified": "2020-04-29T16:12:49+08:00","license": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.","publisher": {
+                "@type": "Organization",
+                "name": "Leong",
+                "logo": {
+                "@type": "ImageObject",
+                "url": "https:\/\/esp8266.xyz\/logo.png",
+                "width":  127 ,
+                "height":  40 
+                }
+            },"author": {
+                "@type": "Person",
+                "name": "Leong"
+            },"description": ""
+    }
+    </script></head>
+    <body><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Leong&#39;s Blog"><i class='far fa-kiss-wink-heart fa-fw'></i> Leong&#39;s Blog</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/posts/"> 所有文章 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="https://github.com/d0na1dduck" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i>  </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Leong&#39;s Blog"><i class='far fa-kiss-wink-heart fa-fw'></i> Leong&#39;s Blog</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/posts/" title="">所有文章</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="https://github.com/d0na1dduck" title="GitHub" rel="noopener noreffer" target="_blank"><i class='fab fa-github fa-fw'></i></a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">Java集合</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="http://esp8266.xyz" title="Author" target="_blank" rel="noopener noreffer author" class="author"><i class="fas fa-user-circle fa-fw"></i>Leong</a></span>&nbsp;
+                    <span class="post-category">收录于<a href="/categories/java%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/">
+                                <i class="far fa-folder fa-fw"></i>Java基础知识
+                            </a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i><time datetime=2020-04-29>2020-04-29</time>&nbsp;
+                <i class="fas fa-pencil-alt fa-fw"></i>约 2653 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>预计阅读 6 分钟&nbsp;<span id="/java%E9%9B%86%E5%90%88/" class="leancloud_visitors" data-flag-title="Java集合">
+                        <i class="far fa-eye fa-fw"></i><span class=leancloud-visitors-count></span>&nbsp;次阅读
+                    </span>&nbsp;</div>
+        </div><div class="details toc" id="toc-static">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#1-从java中的数组谈起">1. 从Java中的数组谈起</a>
+          <ul>
+            <li><a href="#11-使用数组">1.1 使用数组</a></li>
+            <li><a href="#12-处理数组">1.2 处理数组</a>
+              <ul>
+                <li><a href="#遍历">遍历</a></li>
+                <li><a href="#排序">排序</a></li>
+                <li><a href="#arrays工具类">Arrays工具类</a></li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+        <li><a href="#2-java中的集合">2. Java中的集合</a>
+          <ul>
+            <li><a href="#21-概览">2.1 概览</a></li>
+            <li><a href="#22-collection接口">2.2 Collection接口</a>
+              <ul>
+                <li><a href="#collection接口方法">Collection接口方法</a></li>
+              </ul>
+            </li>
+            <li><a href="#23-iterable接口">2.3 Iterable接口</a></li>
+            <li><a href="#24-collection子接口之一list接口">2.4 Collection子接口之一：List接口</a>
+              <ul>
+                <li><a href="#241-list实现类之一arraylist">2.4.1 List实现类之一：ArrayList</a></li>
+                <li><a href="#242-list实现类之二linkedlist">2.4.2 List实现类之二：LinkedList</a></li>
+                <li><a href="#243-list实现类之三vector">2.4.3 List实现类之三：Vector</a></li>
+              </ul>
+            </li>
+            <li><a href="#25-collection子接口之二set接口">2.5 Collection子接口之二：Set接口</a>
+              <ul>
+                <li><a href="#251-set实现类之一hashset">2.5.1 Set实现类之一：HashSet</a></li>
+                <li><a href="#252-set实现类之一linkedhashset">2.5.2 Set实现类之一：LinkedHashSet</a></li>
+                <li><a href="#253-set实现类之一treeset">2.5.3 Set实现类之一：TreeSet</a></li>
+              </ul>
+            </li>
+            <li><a href="#26-map接口">2.6 Map接口</a>
+              <ul>
+                <li><a href="#261-map实现类之一hashmap">2.6.1 Map实现类之一：HashMap</a></li>
+                <li><a href="#262-map实现类之二linkedhashmap">2.6.2 Map实现类之二：LinkedHashMap</a></li>
+                <li><a href="#263-map实现类之三treemap">2.6.3 Map实现类之三：TreeMap</a></li>
+                <li><a href="#264-map实现类之四hashtable">2.6.4 Map实现类之四：Hashtable</a></li>
+                <li><a href="#265-map实现类之五properties">2.6.5 Map实现类之五：Properties</a></li>
+              </ul>
+            </li>
+            <li><a href="#27-collections工具类">2.7 Collections工具类</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h3 id="1-从java中的数组谈起">1. 从Java中的数组谈起</h3>
+<h4 id="11-使用数组">1.1 使用数组</h4>
+<p>数组：是用于储存多个相同类型数据的集合。
+定义一个数组类型的变量，使用数组类型<code>“类型[]”</code>，例如，<code>int[]</code>。和单个基本类型变量不同，数组变量初始化必须使用<code>new int[5]</code>表示创建一个可容纳5个int元素的数组。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 定义长度为5的整型数组
+int[] array = new int[5];
+</code></pre></td></tr></table>
+</div>
+</div><p>也可以在定义数组时直接指定初始化的元素，这样就不必写出数组大小，而是由编译器自动推算数组大小。例如：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">int[] array = new int[]{1,2,3,4,5};
+// 或
+int[] array = {1, 2, 3, 4, 5};
+</code></pre></td></tr></table>
+</div>
+</div><p>要访问数组中的某一个元素，需要使用索引。数组索引从0开始，例如，5个元素的数组，索引范围是0~4。
+可以修改数组中的某一个元素，使用赋值语句，例如，<code>array[1] = 79;。</code>
+可以用数组变量<code>.length</code>获取数组大小：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 定义长度为5的整型数组
+int[] array = new int[5];
+System.out.println(array.length);
+</code></pre></td></tr></table>
+</div>
+</div><p>数组是引用类型，在使用索引访问数组元素时，如果索引超出范围，运行时将报错：<code>java.lang.ArrayIndexOutOfBoundsException</code></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">// 定义长度为5的整型数组
+int[] array = new int[5];
+System.out.println(array[5]);
+</code></pre></td></tr></table>
+</div>
+</div><p><strong>Java中的数组有几个特点：</strong></p>
+<ul>
+<li>数组中的元素是有序的</li>
+<li>数组所有元素初始化为默认值，整型都是0，浮点型是0.0，布尔型是false；</li>
+<li>数组一旦创建后，类型不可改变，大小不可改变；</li>
+<li>数组元素可以是值类型（如int）或引用类型（如String），但数组本身是引用类型。</li>
+</ul>
+<h4 id="12-处理数组">1.2 处理数组</h4>
+<h5 id="遍历">遍历</h5>
+<p>数组的元素类型和数组的大小都是确定的，所以当处理数组元素时候，我们通常使用基本循环或者 For-Each 循环。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">int[] array = {1, 2, 3, 4, 5};
+for (int i = 0; i &lt; array.length; i++) {
+    System.out.println(array[i]);
+}
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">int[] array = {1, 2, 3, 4, 5};
+for (int i : array) {
+    System.out.println(i);
+}
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="排序">排序</h5>
+<p>冒泡排序：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">public void arrayTest() {
+    int[] ns = { 28, 12, 89, 73, 65, 18, 96, 50, 8, 36 };
+    // 排序前:
+    System.out.println(Arrays.toString(ns));
+    for (int i = 0; i &lt; ns.length - 1; i++) {
+        for (int j = 0; j &lt; ns.length - i - 1; j++) {
+            if (ns[j] &gt; ns[j+1]) {
+                // 交换ns[j]和ns[j+1]:
+                int tmp = ns[j];
+                ns[j] = ns[j+1];
+                ns[j+1] = tmp;
+            }
+        }
+    }
+    // 排序后:
+    System.out.println(Arrays.toString(ns));
+}
+</code></pre></td></tr></table>
+</div>
+</div><h5 id="arrays工具类">Arrays工具类</h5>
+<p>Arrays为Java中内置的专门用于处理数组的工具类，位置<code>java.util.Arrays</code>。
+Arrays常用方法：
+| 方法 | 作用 | 参数 | 返回值 |
+| &mdash; | &mdash; | &mdash; | &mdash; |
+| toString | 返回指定数组内容的字符串表示形式 | <code>int[] a</code> | <code>String</code> |
+| binarySearch | 使用二分法搜索指定数组的指定值 | <code>int[] a, int b</code> | <code>index，查询不到返回 -1</code> |
+| sort | 按升序对指定数组进行排序 | <code>int[] a</code> | <code>排序后的数组</code> |
+| equals | 判断两个数组是否相等 | <code>int[] a, int[] b</code> | <code>boolean</code> |</p>
+<p><strong>数组再存储数组方面的弊端：</strong></p>
+<ul>
+<li>数组初始化以后，长度就不可以改变了，不便于扩展；</li>
+<li>数组中提供的属性和方法少，不便于进行添加、删除、插入等操作，且效率不高，同时无法获取存储元素的个数；</li>
+<li>数组存储的数据是有序的、可重复的；&mdash;&gt;存储数据的特点单一</li>
+<li>数组只能按索引顺序存取。</li>
+</ul>
+<hr>
+<h3 id="2-java中的集合">2. Java中的集合</h3>
+<h4 id="21-概览">2.1 概览</h4>
+<p><img
+        class="lazyload"
+        src="/svg/loading/small.min.svg"
+        data-sizes="auto"
+        data-srcset="/../../static/images/basic-markdown-syntax/Collection01.gif, /../../static/images/basic-markdown-syntax/Collection01.gif 1.5x, /../../static/images/basic-markdown-syntax/Collection01.gif 2x"
+        data-src="/../../static/images/basic-markdown-syntax/Collection01.gif"
+        alt="集合框架图"
+        title="集合框架图" />
+<img
+        class="lazyload"
+        src="/svg/loading/small.min.svg"
+        data-sizes="auto"
+        data-srcset="/../../static/images/basic-markdown-syntax/Collection02.jpg, /../../static/images/basic-markdown-syntax/Collection02.jpg 1.5x, /../../static/images/basic-markdown-syntax/Collection02.jpg 2x"
+        data-src="/../../static/images/basic-markdown-syntax/Collection02.jpg"
+        alt="集合框架简化图"
+        title="集合框架简化图" /></p>
+<p>从上面的图中可以看到，Java集合框架主要包括两种类型的容器，一种是集合（Collection），存储一个元素集合；另一个是图（Map)，存储键/值对映射。Collection接口又有三种子类型：List、Set和Queue，再下面是一些抽象类，最后是具体实现类，常用的有ArrayList、LinkedList、HashSet、LinkedHashSet、TreeSet、HashMap、LinkedHashMap、TreeMap等等。</p>
+<p>集合框架是一个用来代表和操纵集合的统一架构。所有的集合框架都包含如下内容：</p>
+<ul>
+<li>接口：是代表集合的抽象数据类型。例如 Collection、List、Set、Map 等。之所以定义多个接口，是为了以不同的方式操作集合对象</li>
+<li>实现（类）：是集合接口的具体实现。从本质上讲，它们是可重复使用的数据结构，例如：ArrayList、LinkedList、HashSet、HashMap。</li>
+<li>算法：是实现集合接口的对象里的方法执行的一些有用的计算，例如：搜索和排序。这些算法被称为多态，那是因为相同的方法可以在相似的接口上有着不同的实现。</li>
+</ul>
+<p>除了集合，该框架也定义了几个 Map 接口和类。Map 里存储的是键/值对。尽管 Map 不是集合，但是它们完全整合在集合中。</p>
+<blockquote>
+<p><em><strong>所有集合类都位于java.util包下，支持泛型，Java集合使用统一的Iterator遍历，尽量不要使用遗留接口。</strong></em></p>
+</blockquote>
+<p>Java的java.util包主要提供了以下三种类型的集合（Collection和Map两种体系）：</p>
+<ul>
+<li>Collection接口：单列数据，定义了一组存取对象的方法的集合
+<ul>
+<li>List: 元素有序、可重复的集合 &mdash;&gt; 动态数组</li>
+<li>Set: 元素无序、不可重复的集合 &mdash;&gt; 数学中的集合</li>
+</ul>
+</li>
+<li>Map接口: 双列数据，保存具有映射关系的“key-value”的集合 &mdash;&gt; 函数：y = f(x)</li>
+</ul>
+<h4 id="22-collection接口">2.2 Collection接口</h4>
+<ul>
+<li>Collection接口是List、Set、和Queue接口的父接口，该接口定义的方法既可用于操作Set集合，也可用于操作List和Queue集合。</li>
+<li>JDK不提供此接口的任何直接实现，而是提供更具体的子接口（如：Set和List）实现。</li>
+<li>在Java5之前，Java集合会丢失容器中所有对象的数据类型，把所有对象都当作Object类型处理；从JDK5.0增加了__泛型__以后，Java集合可以记住容器中对象的数据类型。</li>
+</ul>
+<h5 id="collection接口方法">Collection接口方法</h5>
+<ol>
+<li>添加
+<ul>
+<li><code>add(Object obj)</code></li>
+<li><code>addAll(Collection coll) </code></li>
+</ul>
+</li>
+<li>获取有效元素的个数
+<ul>
+<li><code>int size()</code></li>
+</ul>
+</li>
+<li>清空集合
+<ul>
+<li><code>void clear()</code></li>
+</ul>
+</li>
+<li>是否清空集合
+<ul>
+<li><code>boolean isEmpty()</code></li>
+</ul>
+</li>
+<li>是否包含某个元素
+<ul>
+<li><code>boolean contains(Object obj)</code>:通过元素的equals方法来判断是否是同一个对象</li>
+<li><code>boolean containsAll(Collection c)</code>:也是调用元素的equals方法来比较的。拿两个集合的元素挨个比较。</li>
+</ul>
+</li>
+<li>删除
+<ul>
+<li><code>boolean remove(Object obj)</code>:通过元素的equals方法判断是否是 要删除的那个元素。只会删除找到的第一个元素</li>
+<li><code>boolean removeAll(Collection coll)</code>:取当前集合的差集。</li>
+</ul>
+</li>
+<li>取两个集合的交集
+<ul>
+<li><code>boolean retainAll(Collection c)</code>：把交集的结果存在当前集合中，不 影响c</li>
+</ul>
+</li>
+<li>集合是否相等
+<ul>
+<li><code>boolean equals(Object obj)</code></li>
+</ul>
+</li>
+<li>转成对象数组
+<ul>
+<li><code>Object[] toArray()</code></li>
+</ul>
+</li>
+<li>获取集合对象的哈希值
+<ul>
+<li><code>hashCode()</code></li>
+</ul>
+</li>
+<li>遍历
+<ul>
+<li><code>iterator()</code>：返回迭代器对象，用于集合遍历</li>
+</ul>
+</li>
+</ol>
+<h4 id="23-iterable接口">2.3 Iterable接口</h4>
+<h4 id="24-collection子接口之一list接口">2.4 Collection子接口之一：List接口</h4>
+<h5 id="241-list实现类之一arraylist">2.4.1 List实现类之一：ArrayList</h5>
+<h5 id="242-list实现类之二linkedlist">2.4.2 List实现类之二：LinkedList</h5>
+<h5 id="243-list实现类之三vector">2.4.3 List实现类之三：Vector</h5>
+<h4 id="25-collection子接口之二set接口">2.5 Collection子接口之二：Set接口</h4>
+<h5 id="251-set实现类之一hashset">2.5.1 Set实现类之一：HashSet</h5>
+<h5 id="252-set实现类之一linkedhashset">2.5.2 Set实现类之一：LinkedHashSet</h5>
+<h5 id="253-set实现类之一treeset">2.5.3 Set实现类之一：TreeSet</h5>
+<h4 id="26-map接口">2.6 Map接口</h4>
+<h5 id="261-map实现类之一hashmap">2.6.1 Map实现类之一：HashMap</h5>
+<h5 id="262-map实现类之二linkedhashmap">2.6.2 Map实现类之二：LinkedHashMap</h5>
+<h5 id="263-map实现类之三treemap">2.6.3 Map实现类之三：TreeMap</h5>
+<h5 id="264-map实现类之四hashtable">2.6.4 Map实现类之四：Hashtable</h5>
+<h5 id="265-map实现类之五properties">2.6.5 Map实现类之五：Properties</h5>
+<h4 id="27-collections工具类">2.7 Collections工具类</h4>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>本文于 2020-04-29 更新</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/java%E9%9B%86%E5%90%88/index.md" target="_blank">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span><a href="javascript:void(0);" title="分享到 微博" data-sharer="weibo" data-url="https://esp8266.xyz/java%E9%9B%86%E5%90%88/" data-title="Java集合"><i class="fab fa-weibo fa-fw"></i></a><a href="javascript:void(0);" title="分享到 Blogger" data-sharer="blogger" data-url="https://esp8266.xyz/java%E9%9B%86%E5%90%88/" data-title="Java集合" data-description=""><i class="fab fa-blogger fa-fw"></i></a><a href="javascript:void(0);" title="分享到 百度" data-sharer="baidu" data-url="https://esp8266.xyz/java%E9%9B%86%E5%90%88/" data-title="Java集合"><i data-svg-src="/lib/simple-icons/icons/baidu.min.svg"></i></a></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/java/">Java</a>,&nbsp;<a href="/tags/%E9%9B%86%E5%90%88/">集合</a>,&nbsp;<a href="/tags/%E6%95%B0%E7%BB%84/">数组</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/idea%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%80%BB%E7%BB%93/" class="prev" rel="prev" title="IDEA快捷键总结"><i class="fas fa-angle-left fa-fw"></i>IDEA快捷键总结</a></div>
+</div>
+<div id="comments"><div id="valine" class="comment"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://valine.js.org/">Valine</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreffer" title="Hugo 0.68.3">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/dillonzq/LoveIt" target="_blank" rel="noopener noreffer" title="LoveIt 0.2.0"><i class="far fa-kiss-wink-heart fa-fw"></i> LoveIt</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2019 - 2020</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="http://esp8266.xyz" target="_blank">Leong</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/valine/valine.min.css"><script type="text/javascript">
+    window.config = {"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"valine":{"appId":"pLinjVV1PNsd80mPnXX7PkWr-gzGzoHsz","appKey":"lrJSHw37XLttug6zv8sPtmIf","avatar":"mp","el":"#valine","enableQQ":false,"highlight":true,"lang":"zh-cn","pageSize":10,"placeholder":"你的评论 ...","recordIP":true,"visitor":true}},"headerMode":{"desktop":"fixed","mobile":"auto"},"search":{"algoliaAppID":"266BI4QOOL","algoliaIndex":"index.zh-cn","algoliaSearchKey":"ec363d581c4a768897eca4981d69ee5c","noResultsFound":"没有找到结果","type":"algolia"}};
+</script><script type="text/javascript" src="https://polyfill.io/v3/polyfill.min.js?features=Element.prototype.closest%2CrequestAnimationFrame%2CCustomEvent%2CPromise%2CObject.entries%2CObject.assign%2CObject.values%2Cfetch%2CElement.prototype.after%2CArray.prototype.fill%2CIntersectionObserver%2CArray.from%2CArray.prototype.find%2CMath.sign"></script><script src="https://cdn.bootcdn.net/ajax/libs/valine/1.4.9/Valine.min.js"></script><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.bcff85fb5e00d68802850b393ac7792c997f722f536f38e26638c46dca8e5eb6.js" integrity="sha256-vP&#43;F&#43;14A1ogChQs5Osd5LJl/ci9TbzjiZjjEbcqOXrY="></script><script src="https://cdn.bootcdn.net/ajax/libs/autocomplete.js/0.37.1/autocomplete.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.8af144bb3c7d3cadc3955a71b27d946c14d8aedce9b9c64b07cd00365357ae08.js" integrity="sha256-ivFEuzx9PK3DlVpxsn2UbBTYrtzpucZLB80ANlNXrgg="></script><script src="https://cdn.bootcdn.net/ajax/libs/lazysizes/5.2.0/lazysizes.min.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/clipboard.js/2.0.6/clipboard.js"></script><script src="https://cdn.bootcdn.net/ajax/libs/sharer.js/0.4.0/sharer.js"></script><script type="text/javascript" src="/js/theme.min.8e4b4c8f08b6978db4fe42bca2542908d3e5ca0f92aa584791e7bbef4f092969.js" integrity="sha256-jktMjwi2l420/kK8olQpCNPlyg&#43;SqlhHkee7708JKWk="></script></body>
+</html>
